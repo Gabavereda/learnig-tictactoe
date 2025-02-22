@@ -13,15 +13,19 @@ const Square = ({ value, onSquareClick }) => {
 }
 
 const App = ({ value }) => {
-  
+  const [xIsNext, setXIsNext] = useState(true);
 
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   const handleClick = (i) => {
+    if (squares[i]) {
+      return;
+    }
     const nextSquares = squares.slice();
-    nextSquares[i] = "X";
+    xIsNext ? nextSquares[i] = "X" : nextSquares[i] = "O";
     setSquares(nextSquares);
-    console.log(`Clicked on line ${value}`)
+    setXIsNext(!xIsNext);
+    console.log(`Clicked on line ${handleClick}`)
   };
 
   return (
